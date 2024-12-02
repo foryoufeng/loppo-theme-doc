@@ -1,0 +1,39 @@
+{
+  "name": "loppo-theme-doc",
+  "version": "1.0.0",
+  "description": "a theme of Loppo",
+  "main": "index.js",
+  "scripts": {
+    "clean-css": "rm -rf ./theme/assets/css/*",
+    "build-css": "npm run clean-css && npm run build-sass && npm run build-postcss",
+    "build-postcss": "postcss --output theme/assets/css/app.min.css theme/assets/css/app.css",
+    "build-sass": "sass --style expanded --load-path=node_modules sass/wangdoc.sass theme/assets/css/app.css",
+    "build-js": "mkdir -p theme/assets/js && browserify -g uglifyify scripts/index.js > theme/assets/js/app.js",
+    "build": "npm run build-css && npm run build-js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "loppo",
+    "theme",
+    "template"
+  ],
+  "homepage": "https://github.com/foryoufeng/loppo-theme-doc",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/foryoufeng/loppo-theme-doc"
+  },
+  "author": "foryoufeng",
+  "license": "MIT",
+  "devDependencies": {
+    "@fullhuman/postcss-purgecss": "^6.0.0",
+    "browserify": "17.x",
+    "bulma": "1.x",
+    "cssnano": "^7.0.1",
+    "postcss": "^8.3.6",
+    "postcss-cli": "11.x",
+    "postcss-prune-var": "^1.1.2",
+    "postcss-variable-compress": "^3.0.0",
+    "sass": "1.x",
+    "uglifyify": "^5.0.1"
+  }
+}

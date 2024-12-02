@@ -1,0 +1,43 @@
+<nav class="panel panel-menu is-light">
+  <p class="panel-heading">
+    <i class="fa fa-book" aria-hidden="true"></i> <%= site %>
+  </p>
+  <div class="panel-block">
+  <aside class="menu">
+  <p class="menu-label">
+  </p>
+  <ul class="menu-list">
+    <% chaptersOrigin.forEach(i => { %>
+      <li>
+        <% if (i.origin === current_path) { %>
+          <a href="<%= relative_root_path %><%= i.path %>" class="is-active">
+        <% } else { %>
+          <a href="<%= relative_root_path %><%= i.path %>">
+        <% } %>
+          <span class="icon">
+          <% if (i.nextLevelBegins) { %>
+            <i class="fa fa-caret-down"></i>
+          <% } %>
+          </span>
+          <% if (i.nextLevelBegins) { %>
+            <i class="fa folder fa-folder-o" aria-hidden="true" style="width: 14px;"></i>
+          <% } else { %>
+            <i class="fa fa-file-text-o" aria-hidden="true" style="width: 14px;"></i>
+          <% } %>
+            &nbsp;
+            <span class="menu-list-title"><%= i.text %></span>
+          </a>
+        <% if (i.nextLevelBegins) { %>
+      <ul>
+        <% } else { %>
+      </li>
+        <% } %>
+      <% if (i.currentLevelEnds) { %>
+        <%= '</ul></li>'.repeat(i.currentLevelEndNum) %>
+      <% } else { %>
+      <% } %>
+    <% }) %>
+  </ul>
+  </aside>
+  </div>
+</nav>
